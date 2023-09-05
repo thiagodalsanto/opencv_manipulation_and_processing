@@ -6,7 +6,7 @@ class CaptureGUI:
         self.main_instance = main_instance
 
         self.root = tk.Tk()
-        self.root.title("Capturar Imagem")
+        self.root.title("Captured")
         self.root.geometry("200x100")
 
         self.capture_button = ttk.Button(self.root, text="Capturar", command=self.capture_image)
