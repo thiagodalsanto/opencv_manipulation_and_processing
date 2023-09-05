@@ -58,7 +58,6 @@ class Main:
                 self.imagem_capturada = frame_video.copy()
                 self.imagem_capturada = cv2.cvtColor(self.imagem_capturada, cv2.COLOR_BGR2RGB)
                 cv2.imshow("Imagem Capturada", self.imagem_capturada)
-                cv2.imwrite("captura_do_frame.png", self.imagem_capturada)
 
                 cv2.setMouseCallback("Imagem Capturada", self.capture_image.capturar_cor)
 
