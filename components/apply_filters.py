@@ -5,40 +5,39 @@ class ApplyFilters:
     def __init__(self, main_instance):
         self.main_instance = main_instance
 
-    def apply_filters(self, valor_gaussian, valor_bilateral):
-        canais_de_cor = cv2.split(self.main_instance.imagem_capturada)
-        self.main_instance.brilho_atual = valor_gaussian
+    def apply_filters(self, gaussian_value, bilateral_value):
+        color_channels = cv2.split(self.main_instance.imagem_capturada)
+        self.main_instance.brightness_now = gaussian_value
 
-        imagem_gaussian = cv2.GaussianBlur(canais_de_cor[0], (5, 5), valor_gaussian)
+        gaussian_image = cv2.GaussianBlur(color_channels[0], (5, 5), gaussian_value)
 
-        imagem_bilateral = cv2.bilateralFilter(canais_de_cor[0], 25, valor_bilateral, valor_bilateral)
-        imagem_resultante = cv2.addWeighted(imagem_gaussian, 0.7, imagem_bilateral, 0.3, 0)
-        imagem_modificada = cv2.add(imagem_resultante, np.ones_like(canais_de_cor[0]) * self.main_instance.brilho_atual)
+        bilateral_image = cv2.bilateralFilter(color_channels[0], 25, bilateral_value, bilateral_value)
+        result_image = cv2.addWeighted(gaussian_image, 0.7, bilateral_image, 0.3, 0)
+        mod_image = cv2.add(result_image, np.ones_like(color_channels[0]) * self.main_instance.brightness_now)
 
-        cv2.imshow("Imagem Capturada", imagem_modificada)
+        cv2.imshow("Captured", mod_image)
 
-    def gaussian_blur(self, valor):
-        self.apply_filters(valor, self.main_instance.kernel_size_atual)
+    def gaussian_blur(self, value):
+        self.apply_filters(value, self.main_instance.actual_kernel_size)
 
-    def bilateral_blur(self, valor):
-        self.apply_filters(self.main_instance.sigma_atual, valor)
+    def bilateral_blur(self, value):
+        self.apply_filters(self.main_instance.actual_sigma, value)
 
-    def change_upper_limiar(self, valor):
-        self.main_instance.upper_limiar = valor
+    def change_upper_limiar(self, value):
+        self.main_instance.upper_limiar = value
         self.main_instance.update_limiar_filter()
 
-    def change_lower_limiar(self, valor):
-        self.main_instance.lower_limiar = valor
+    def change_lower_limiar(self, value):
+        self.main_instance.lower_limiar = value
         self.main_instance.update_limiar_filter()
 
-    def apply_threshold(self, valor):
+    def apply_threshold(self, value):
         if self.main_instance.imagem_capturada is not None:
-            imagem_azul = self.main_instance.imagem_capturada[:, :, 0]  # Canal Azul (Blue)
+            imagem_azul = self.main_instance.imagem_capturada[:, :, 0]
 
-            # Aplicar a conversão para 8 bits
-            imagem_azul_8bits = cv2.convertScaleAbs(imagem_azul)
+            blue_image_8bits = cv2.convertScaleAbs(imagem_azul)
 
-            _, imagem_binaria = cv2.threshold(imagem_azul_8bits, valor, 255, cv2.THRESH_BINARY)
-            cv2.imshow("Imagem Capturada", imagem_binaria)
+            _, binary_image = cv2.threshold(blue_image_8bits, value, 255, cv2.THRESH_BINARY)
+            cv2.imshow("Captured", binary_image)
 
 
