@@ -1,5 +1,5 @@
 ## OpenCV Manipulation and Processing
-Projeto com uma aplicação simples de interface gráfica (GUI) desenvolvida utilizando a biblioteca Tkinter do Python para Manipulação e Processamento da captura de um frame de um vídeo. A aplicação permite aos usuários capturar um frame de um vídeo e realizar várias manipulações Filtros Passa-Baixa, Passa-Alta, Limiar e Threshold, utilizando OpenCV.
+Projeto com uma aplicação simples de interface gráfica (GUI) desenvolvida utilizando a biblioteca Tkinter do Python para Manipulação e Processamento da captura de um frame de um vídeo. A aplicação permite aos usuários capturar um frame de um vídeo e realizar várias manipulações de Filtros Passa-Baixa, Passa-Alta, Limiar e Threshold, utilizando OpenCV.
 
 ## Sobre o trabalho:
 
